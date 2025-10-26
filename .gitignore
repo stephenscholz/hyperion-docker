@@ -1,0 +1,57 @@
+# Build artifacts
+*.o
+*.a
+*.so
+build/
+dist/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Config files (keep structure, ignore actual configs)
+config/*.json
+config/*.db
+config/*.db-shm
+config/*.db-wal
+!config/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Other
+*.bak
+*.orig
+.env

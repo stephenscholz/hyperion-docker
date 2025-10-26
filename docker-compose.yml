@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  hyperion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        HYPERION_VERSION: master
+    image: hyperion-ng:latest
+    container_name: hyperion
+    restart: unless-stopped
+    
+    # Network configuration
+    network_mode: host
+    
+    # Privileged mode may be required for hardware access
+    # Comment out if not needed
+    privileged: true
+    
+    # Ports (not needed with network_mode: host)
+    # ports:
+    #   - "8090:8090"   # Web UI
+    #   - "19444:19444" # JSON server
+    #   - "19445:19445" # Protobuf server
+    #   - "19400:19400" # Flatbuffer server
+    #   - "2100:2100"   # Boblight server
+    
+    # Volumes
+    volumes:
+      - ./config:/opt/hyperion/config
+      - /dev:/dev  # Device access for LED controllers
+    
+    # Environment variables
+    environment:
+      - HYPERION_HTTP_PORT=8090
+      - HYPERION_JSON_PORT=19444
+      - TZ=Europe/London  # Set your timezone
+    
+    # Device access (alternative to privileged mode)
+    # Uncomment and adjust based on your hardware
+    # devices:
+    #   - /dev/spidev0.0:/dev/spidev0.0
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
+    #   - /dev/video0:/dev/video0
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
