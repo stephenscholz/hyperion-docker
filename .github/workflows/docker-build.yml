@@ -10,9 +10,16 @@ on:
 env:
   IMAGE_NAME: hyperion-ng
 
+# Restrict default permissions to read-only
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
     
     steps:
     - name: Checkout code
@@ -39,6 +46,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: read
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -48,3 +58,4 @@ jobs:
       with:
         dockerfile: Dockerfile
         ignore: DL3008,DL3015
+
