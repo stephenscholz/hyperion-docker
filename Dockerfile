@@ -123,7 +123,7 @@ USER hyperion
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD ["hyperiond", "--test"] || exit 1
+    CMD hyperiond --test || exit 1
 
 # Entry point
 ENTRYPOINT ["hyperiond"]
