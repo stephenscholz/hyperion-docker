@@ -121,9 +121,9 @@ VOLUME ["/opt/hyperion/config"]
 # Switch to non-root user
 USER hyperion
 
-# Health check
+# Health check - verifies hyperion daemon is responding
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD hyperiond --test || exit 1
+    CMD ["hyperiond", "--test"]
 
 # Entry point
 ENTRYPOINT ["hyperiond"]
